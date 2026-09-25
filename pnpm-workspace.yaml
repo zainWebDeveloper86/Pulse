@@ -1,6 +1,10 @@
+packages:
+  - '.'
+
 allowBuilds:
-  '@clerk/shared': set this to true or false
+  '@clerk/shared': true
   '@prisma/engines': true
   prisma: true
-  sharp: false
-  unrs-resolver: false
+  sharp: true
+  unrs-resolver: true
+  esbuild: true
