@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+
+// =============================================
+//  User Model
+// =============================================
+
+model User {
+  id            String   @id // Supabase Auth UUID
+  email         String   @unique
+  name          String
+  username      String   @unique
+  image         String?
+  bio           String?
+  onboarded     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  pulses        Pulse[]
+  communities   Community[] @relation("CommunityMembers") 
+  createdCommunities Community[] @relation("CommunityCreator") 
+
+  @@map("users")
+}
+
+// =============================================
+//  Pulse Model
+// =============================================
+
+model Pulse {
+  id          String   @id @default(cuid())
+  text        String
+  image       String?
+  authorId    String
+  parentId    String?
+  communityId String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  author      User    @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  parent      Pulse?  @relation("PulseReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     Pulse[] @relation("PulseReplies")
+  community   Community? @relation(fields: [communityId], references: [id], onDelete: SetNull) // ← Relation add
+
+  @@index([authorId])
+  @@index([parentId])
+  @@index([communityId])
+  @@map("pulses")
+}
+
+// =============================================
+//  Community Model
+// =============================================
+
+model Community {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  username    String   @unique
+  image       String?
+  bio         String?
+  createdById String?
+  createdAt   DateTime @default(now())
+
+  createdBy   User?   @relation("CommunityCreator", fields: [createdById], references: [id])
+  members     User[]  @relation("CommunityMembers")
+  pulses      Pulse[]
+
+  @@map("communities")
+}
