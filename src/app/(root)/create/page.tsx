@@ -3,6 +3,8 @@ import { getClerkUser, getExistingUser } from "@/lib/auth";
 import PulseForm from "@/features/pulses/components/PulseForm";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "Create Pulse | Pulse",
 };

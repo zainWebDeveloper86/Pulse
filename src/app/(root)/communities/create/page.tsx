@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-
 import { getExistingUser } from "@/lib/auth";
 import CreateCommunityForm from "@/features/communities/components/CreateCommunityForm";
+
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: "Create Community | Pulse",

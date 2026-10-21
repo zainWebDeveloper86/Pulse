@@ -1,6 +1,4 @@
-import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-
 import { fetchCommunityDetails } from "@/features/communities/queries";
 import CommunityPulsesTab from "@/features/communities/components/CommunityPulsesTab";
 import ProfileHeader from "@/features/users/components/ProfileHeader";
@@ -12,6 +10,8 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import { communityTabs } from "@/config/nav";
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ id: string }>;

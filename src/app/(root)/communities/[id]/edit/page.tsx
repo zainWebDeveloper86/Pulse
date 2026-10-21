@@ -1,8 +1,9 @@
 import { redirect, notFound } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-
 import { prisma } from "@/lib/prisma";
 import EditCommunityForm from "@/features/communities/components/EditCommunityForm";
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ id: string }>;

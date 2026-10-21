@@ -1,9 +1,10 @@
 import { redirect } from "next/navigation";
-
 import { getClerkUser, getExistingUser } from "@/lib/auth";
 import { fetchPulses } from "@/features/pulses/queries";
 import PulseCard from "@/features/pulses/components/PulseCard";
 import Pagination from "@/components/shared/Pagination";
+
+export const dynamic = 'force-dynamic';
 
 interface HomeProps {
   searchParams: Promise<{ page?: string }>;

@@ -3,6 +3,8 @@ import { fetchUser } from "@/features/users/queries";
 import OnboardingForm from "@/features/users/components/OnboardingForm";
 import { getClerkUser } from "@/lib/auth";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: "Onboarding | Pulse",
 };

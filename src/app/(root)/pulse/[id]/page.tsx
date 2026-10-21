@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-
 import { getExistingUser } from "@/lib/auth";
 import { fetchPulseById } from "@/features/pulses/queries";
 import PulseCard from "@/features/pulses/components/PulseCard";
 import CommentForm from "@/features/pulses/components/CommentForm";
+
+export const dynamic = 'force-dynamic';
 
 export const revalidate = 0;
 

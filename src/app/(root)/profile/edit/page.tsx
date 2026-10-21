@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-
 import { fetchUser } from "@/features/users/queries";
 import EditProfileForm from "@/features/users/components/EditProfileForm";
+
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: "Edit Profile | Pulse",

@@ -2,12 +2,13 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { Plus } from "lucide-react";
-
 import { getExistingUser } from "@/lib/auth";
 import { fetchCommunities } from "@/features/communities/queries";
 import CommunityCard from "@/features/communities/components/CommunityCard";
 import Searchbar from "@/components/shared/Searchbar";
 import Pagination from "@/components/shared/Pagination";
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   searchParams: Promise<{ q?: string; page?: string }>;

@@ -1,11 +1,12 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-
 import { getExistingUser } from "@/lib/auth";
 import { fetchUsers } from "@/features/users/queries";
 import UserCard from "@/features/users/components/UserCard";
 import Searchbar from "@/components/shared/Searchbar";
 import Pagination from "@/components/shared/Pagination";
+
+export const dynamic = 'force-dynamic';
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string; page?: string }>;

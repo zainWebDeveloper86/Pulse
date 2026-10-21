@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-
 import { getExistingUser } from "@/lib/auth";
 import { getActivity } from "@/features/users/queries";
+
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: "Activity | Pulse",

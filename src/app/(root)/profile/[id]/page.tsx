@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs/server";
-
 import { fetchUser } from "@/features/users/queries";
 import ProfileHeader from "@/features/users/components/ProfileHeader";
 import UserPulsesTab from "@/features/users/components/UserPulsesTab";
@@ -11,6 +10,8 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs";
 import { profileTabs } from "@/config/nav";
+
+export const dynamic = 'force-dynamic';
 
 interface ProfilePageProps {
     params: Promise<{ id: string }>;

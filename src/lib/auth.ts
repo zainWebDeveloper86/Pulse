@@ -1,6 +1,8 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Get current user from Prisma (after webhook sync)
  */
@@ -47,7 +49,11 @@ export async function getExistingUser() {
     });
 
     return user;
-  } catch (error) {
+  } catch (error: any) {
+    
+    if (error?.digest === "DYNAMIC_SERVER_USAGE") {
+      return null;
+    }
     // Stale session: user not found in Clerk → return null
     console.error("Clerk user fetch failed (stale session?):", error);
     return null;
@@ -60,8 +66,12 @@ export async function getExistingUser() {
 export async function getClerkUser() {
   try {
     return await currentUser();
-  } catch (error) {
-    console.error("Clerk currentUser failed:", error);
+  } catch (error: any) {
+
+    if (error?.digest === "DYNAMIC_SERVER_USAGE") {
+      return null;
+    }
+    console.error("getClerkUser failed:", error);
     return null;
   }
 }
