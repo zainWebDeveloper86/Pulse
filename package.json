@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "_commit-1_": "add 'prisma generate && next build' for production",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "_commit-2_": "add 'prisma generate' separate for local development",
     "postinstall": "prisma generate"
   },
   "dependencies": {
